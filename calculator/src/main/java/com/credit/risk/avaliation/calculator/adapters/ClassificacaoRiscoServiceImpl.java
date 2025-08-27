@@ -1,6 +1,6 @@
-package adapters;
+package com.credit.risk.avaliation.calculator.adapters;
 
-import entities.Cliente;
+import com.credit.risk.avaliation.calculator.entities.Cliente;
 import entities.ClassificacaoRisco;
 import entities.RiscoCredito;
 import interfaces.ClassificacaoRiscoService;
