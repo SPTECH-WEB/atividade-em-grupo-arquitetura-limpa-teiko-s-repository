@@ -75,3 +75,125 @@ Uma fintech está desenvolvendo um sistema para facilitar a **análise de crédi
      +---------------------------+
      |     Adapters (Infra)     |  --> Implementações: DB, APIs etc.
      +---------------------------+
+
+---
+
+## 👥 Integrantes
+
+1. Raíne Jardim
+2. Vinicius Pajor
+3. Gustavo Aloe
+4. Murilo Barros
+5. Samara Lisboa
+6. Matheus Cantalejo
+
+---
+
+## 🧩 Divisão de Tarefas
+
+> Ajustem conforme a contribuição real do time.
+
+- Arquitetura e domínio (entidades, casos de uso): Raíne Jardim
+- API Web (controllers, DTOs, validação): Murilo Barros
+- Persistência (em memória; opcional DB futuro): Gustavo Aloe
+- Regras de classificação de risco (serviços): Vinicius Pajor
+- Documentação (README, Swagger/OpenAPI): Samara Lisboa
+- Qualidade (testes, cobertura): Matheus Cantalejo 
+
+---
+
+## ▶️ Instruções de Execução
+
+### Pré-requisitos
+
+- Java 21 (JDK 21)
+- Não é necessário instalar Maven: o projeto usa Maven Wrapper (`mvnw`)
+
+### Rodar a aplicação (modo desenvolvimento)
+
+No diretório raiz do repositório:
+
+1. Acesse o módulo `calculator`:
+   - Windows PowerShell:
+     ```bash
+     cd calculator
+     .\mvnw.cmd spring-boot:run
+     ```
+   - Linux/macOS:
+     ```bash
+     cd calculator
+     ./mvnw spring-boot:run
+     ```
+
+2. A API sobe por padrão em `http://localhost:8080`.
+
+### Build do JAR (produção/local)
+
+- Construir o pacote:
+  - Windows:
+    ```bash
+    cd calculator
+    .\mvnw.cmd -DskipTests package
+    ```
+  - Linux/macOS:
+    ```bash
+    cd calculator
+    ./mvnw -DskipTests package
+    ```
+
+- Executar o JAR gerado:
+  ```bash
+  java -jar calculator/target/calculator-0.0.1-SNAPSHOT.jar
+  ```
+
+### Testes
+
+- Executar testes:
+  - Windows:
+    ```bash
+    cd calculator
+    .\mvnw.cmd test
+    ```
+  - Linux/macOS:
+    ```bash
+    cd calculator
+    ./mvnw test
+    ```
+
+### Documentação (Swagger/OpenAPI)
+
+- Após subir a aplicação, acesse a documentação interativa em:
+  - `http://localhost:8080/swagger-ui.html` ou
+  - `http://localhost:8080/swagger-ui/index.html`
+
+---
+
+## 🔌 Exemplos de Uso (cURL)
+
+### Criar cliente e classificar risco
+
+```bash
+curl -X POST "http://localhost:8080/clientes" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "Fulano de Tal",
+    "email": "fulano@example.com",
+    "telefone": "11999999999",
+    "cpf": "123.456.789-00",
+    "rendaMensal": 5000,
+    "idade": 28,
+    "profissao": "Analista"
+  }'
+```
+
+Resposta esperada: dados do cliente com a classificação de risco calculada.
+
+### Consultar cliente por ID
+
+```bash
+curl -X GET "http://localhost:8080/clientes/{id}"
+```
+
+Substitua `{id}` pelo identificador retornado no cadastro.
+
+---
